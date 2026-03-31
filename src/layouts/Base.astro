@@ -47,18 +47,33 @@ const { title, description = 'On-device AI chief of staff for macOS. Private mee
     <Analytics />
 
     <script is:inline>
-      const observer = new IntersectionObserver((entries) => {
+      // Scroll-driven animations with staggered children
+      const obs = new IntersectionObserver((entries) => {
         entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add('animate-fade-in');
-            e.target.style.opacity = '1';
-            observer.unobserve(e.target);
-          }
+          if (!e.isIntersecting) return;
+          const el = e.target;
+          const anim = el.dataset.animate || 'fade-up';
+          const delay = el.dataset.delay || '0';
+
+          el.style.animationDelay = delay + 'ms';
+          el.classList.add('animate-' + anim);
+          el.style.opacity = '1';
+          obs.unobserve(el);
+
+          // Stagger children with [data-stagger]
+          el.querySelectorAll('[data-stagger]').forEach((child, i) => {
+            child.style.opacity = '0';
+            child.style.animationDelay = (parseInt(delay) + (i + 1) * 100) + 'ms';
+            child.classList.add('animate-' + (child.dataset.stagger || 'fade-up'));
+            // Force reflow then reveal
+            requestAnimationFrame(() => { child.style.opacity = '1'; });
+          });
         });
-      }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
       document.querySelectorAll('[data-animate]').forEach(el => {
         el.style.opacity = '0';
-        observer.observe(el);
+        obs.observe(el);
       });
     </script>
   </body>

@@ -9,18 +9,20 @@ interface Props {
 }
 
 const { label, title, description, items, reverse = false, mockup } = Astro.props;
+const textAnim = reverse ? 'slide-left' : 'slide-right';
+const mockupAnim = reverse ? 'slide-right' : 'slide-left';
 ---
 
-<section class="py-20 md:py-32 px-6" data-animate>
-  <div class={`max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center ${reverse ? 'md:direction-rtl' : ''}`}>
+<section class="py-20 md:py-32 px-6 overflow-hidden">
+  <div class={`max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center`}>
     <!-- Text -->
-    <div class={reverse ? 'md:order-2' : ''}>
+    <div class={reverse ? 'md:order-2' : ''} data-animate={textAnim}>
       <p class="text-[11px] font-medium uppercase tracking-[0.15em] text-primary mb-4">{label}</p>
       <h2 class="font-display text-[32px] md:text-[44px] leading-[1.08] text-foreground mb-5">{title}</h2>
       <p class="text-[15px] leading-relaxed text-muted-foreground mb-6">{description}</p>
       <ul class="space-y-3">
-        {items.map(item => (
-          <li class="flex items-start gap-2.5 text-[13.5px] text-muted-foreground leading-relaxed">
+        {items.map((item, i) => (
+          <li class="flex items-start gap-2.5 text-[13.5px] text-muted-foreground leading-relaxed" data-stagger="fade-up">
             <svg class="w-4 h-4 text-green mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
             {item}
           </li>
@@ -29,7 +31,7 @@ const { label, title, description, items, reverse = false, mockup } = Astro.prop
     </div>
 
     <!-- Mockup -->
-    <div class={reverse ? 'md:order-1' : ''}>
+    <div class={reverse ? 'md:order-1' : ''} data-animate={mockupAnim} data-delay="150">
       <div class="mac-window" style="box-shadow: 0 16px 48px rgba(0,0,0,0.3);">
         <div class="mac-titlebar">
           <div class="mac-dot" style="background: #ff5f57;"></div>
