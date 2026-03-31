@@ -1,20 +1,11 @@
 import type { APIRoute } from 'astro';
-import fs from 'node:fs';
-import path from 'node:path';
+import { Redis } from '@upstash/redis';
 
-const SUBSCRIBERS_FILE = path.join(process.cwd(), 'subscribers.json');
-
-function getSubscribers(): string[] {
-  try {
-    const data = fs.readFileSync(SUBSCRIBERS_FILE, 'utf-8');
-    return JSON.parse(data);
-  } catch {
-    return [];
-  }
-}
-
-function saveSubscribers(emails: string[]) {
-  fs.writeFileSync(SUBSCRIBERS_FILE, JSON.stringify(emails, null, 2));
+function getRedis() {
+  const url = import.meta.env.UPSTASH_REDIS_REST_URL || process.env.UPSTASH_REDIS_REST_URL;
+  const token = import.meta.env.UPSTASH_REDIS_REST_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
+  if (!url || !token) return null;
+  return new Redis({ url, token });
 }
 
 export const POST: APIRoute = async ({ request }) => {
@@ -29,18 +20,26 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
-    const subscribers = getSubscribers();
-    if (subscribers.includes(email)) {
+    const redis = getRedis();
+    if (!redis) {
+      return new Response(JSON.stringify({ error: 'storage_not_configured' }), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    // Use a Redis set for deduplication
+    const added = await redis.sadd('waitlist', email);
+    if (added === 0) {
       return new Response(JSON.stringify({ error: 'already_subscribed' }), {
         status: 409,
         headers: { 'Content-Type': 'application/json' },
       });
     }
 
-    subscribers.push(email);
-    saveSubscribers(subscribers);
+    const count = await redis.scard('waitlist');
 
-    return new Response(JSON.stringify({ ok: true, count: subscribers.length }), {
+    return new Response(JSON.stringify({ ok: true, count }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
     });
@@ -55,7 +54,7 @@ export const POST: APIRoute = async ({ request }) => {
 export const GET: APIRoute = async ({ request }) => {
   const url = new URL(request.url);
   const secret = url.searchParams.get('secret');
-  const expectedSecret = process.env.ADMIN_SECRET || '';
+  const expectedSecret = import.meta.env.ADMIN_SECRET || process.env.ADMIN_SECRET || '';
 
   if (!expectedSecret || secret !== expectedSecret) {
     return new Response(JSON.stringify({ error: 'unauthorized' }), {
@@ -64,7 +63,15 @@ export const GET: APIRoute = async ({ request }) => {
     });
   }
 
-  const subscribers = getSubscribers();
+  const redis = getRedis();
+  if (!redis) {
+    return new Response(JSON.stringify({ error: 'storage_not_configured' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
+  const subscribers = await redis.smembers('waitlist');
   return new Response(JSON.stringify({ count: subscribers.length, subscribers }), {
     status: 200,
     headers: { 'Content-Type': 'application/json' },
