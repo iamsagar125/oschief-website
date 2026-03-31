@@ -1,65 +1,39 @@
 ---
 const features = [
   {
-    label: 'MEETING INTELLIGENCE',
-    title: 'Every meeting, structured and searchable',
-    items: [
-      'Live speaker-labeled transcription (You vs Others)',
-      'AI summaries: decisions, action items, open questions',
-      'Role-based coaching (PM, engineer, founder, sales, 10+ roles)',
-      'Talk-time metrics, filler detection, conversation analysis',
-    ],
+    title: 'Meeting Intelligence',
+    items: ['Live speaker-labeled transcription', 'Structured AI summaries', 'Role-based coaching for 10+ roles', 'Talk-time metrics & filler detection'],
   },
   {
-    label: 'PROACTIVE INTELLIGENCE',
-    title: 'Your morning starts with clarity',
-    items: [
-      'Daily morning brief synthesized from your calendar and commitments',
-      'Commitment risk scoring: GREEN / AMBER / RED',
-      'Stale decision detection — 14+ days with no movement',
-      'End-of-day routine and weekly intelligence digest',
-    ],
+    title: 'Proactive Intelligence',
+    items: ['Daily morning brief', 'Commitment risk scoring', 'Stale decision alerts', 'Weekly intelligence digest'],
   },
   {
-    label: 'PEOPLE & PROJECTS',
-    title: 'Know everyone. Track everything.',
-    items: [
-      'Auto-built relationship graph from meetings',
-      'Per-person history: what you decided, what you owe, what they owe you',
-      'Projects group meetings, decisions, and commitments',
-      'Decision lifecycle: Made, Assigned, In Progress, Done, Revisited',
-    ],
+    title: 'People & Projects',
+    items: ['Auto-built relationship graph', 'Per-person commitment tracking', 'Project grouping & timelines', 'Full decision lifecycle'],
   },
   {
-    label: 'INTEGRATIONS',
-    title: 'Fits where you already work',
-    items: [
-      'Google Calendar + Microsoft 365',
-      'Obsidian vault export with wikilinks and YAML frontmatter',
-      'Jira ticket creation from action items',
-      'Slack and Teams webhook posting',
-      'Gmail read-only for meeting prep context',
-    ],
+    title: 'Integrations',
+    items: ['Google Calendar + Microsoft 365', 'Obsidian vault export', 'Jira, Slack, Teams', 'Gmail for meeting prep'],
   },
 ];
 ---
 
-<section class="py-16 md:py-24" data-animate>
-  <div class="max-w-content mx-auto px-6">
-    <p class="text-[11px] font-medium uppercase tracking-widest text-muted-foreground mb-4">What you get</p>
-    <h2 class="font-display text-[32px] md:text-[40px] leading-[1.1] text-foreground mb-12">
+<section id="features" class="py-20 md:py-28 px-6" data-animate>
+  <div class="max-w-[1100px] mx-auto">
+    <p class="text-[11px] font-medium uppercase tracking-[0.15em] text-primary mb-4 text-center">Everything you get</p>
+    <h2 class="font-display text-[32px] md:text-[44px] leading-[1.08] text-foreground mb-14 text-center">
       Not another meeting recorder
     </h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
       {features.map((f) => (
-        <div class="border border-border rounded-md p-6 bg-card transition-shadow hover:shadow-[var(--card-shadow-hover)]">
-          <p class="text-[10px] font-medium uppercase tracking-widest text-muted-foreground mb-2">{f.label}</p>
-          <h3 class="font-sans font-semibold text-[16px] text-foreground mb-4">{f.title}</h3>
-          <ul class="space-y-2">
+        <div class="border border-border rounded-md p-6 bg-card/50 hover:bg-card transition-colors">
+          <h3 class="font-sans font-semibold text-[15px] text-foreground mb-4">{f.title}</h3>
+          <ul class="space-y-2.5">
             {f.items.map((item) => (
-              <li class="flex items-start gap-2 text-[13.5px] text-muted-foreground leading-relaxed">
-                <svg class="w-4 h-4 text-green mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <li class="flex items-start gap-2.5 text-[13px] text-muted-foreground">
+                <svg class="w-3.5 h-3.5 text-green mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                 {item}
               </li>
             ))}

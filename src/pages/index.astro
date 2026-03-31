@@ -2,25 +2,66 @@
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Hero from '../components/Hero.astro';
-import ProblemStatement from '../components/ProblemStatement.astro';
-import FeaturePillars from '../components/FeaturePillars.astro';
+import AppPreview from '../components/AppPreview.astro';
+import StorySection from '../components/StorySection.astro';
+import PrivacyCallout from '../components/PrivacyCallout.astro';
 import Features from '../components/Features.astro';
 import Pricing from '../components/Pricing.astro';
-import PrivacyCallout from '../components/PrivacyCallout.astro';
+import Testimonials from '../components/Testimonials.astro';
 import WaitlistCTA from '../components/WaitlistCTA.astro';
 import Footer from '../components/Footer.astro';
 ---
 
 <Base title="OSChief — On-device chief of staff for macOS">
-  <div id="top"></div>
   <Nav />
   <main>
     <Hero />
-    <ProblemStatement />
-    <FeaturePillars />
+    <AppPreview />
+
+    <StorySection
+      label="Record"
+      title="Record everything"
+      description="Capture mic and system audio with live, speaker-labeled transcription. Works with Zoom, Meet, Teams, or any app that makes sound."
+      items={[
+        'On-device transcription via MLX Whisper',
+        'Speaker diarization — You vs Others',
+        'Hide from screen share during calls',
+        'Works offline, no internet required',
+      ]}
+      mockup="recording"
+    />
+
+    <StorySection
+      label="Understand"
+      title="Every meeting, structured"
+      description="AI turns raw conversation into decisions, commitments with owners, open questions, and people. Not a transcript dump — a professional brief."
+      items={[
+        'Decisions extracted with full context',
+        'Action items with owners and due dates',
+        'Role-based coaching for 10+ roles',
+        'Custom summary templates',
+      ]}
+      mockup="summary"
+      reverse
+    />
+
+    <StorySection
+      label="Act"
+      title="Never drop the ball"
+      description="Morning briefs surface what matters. Risk scoring flags slipping commitments. OSChief nudges you before things fall through."
+      items={[
+        'Daily morning brief from your calendar + commitments',
+        'Commitment risk scoring: green, amber, red',
+        'Stale decision detection after 14 days',
+        'Weekly intelligence digest',
+      ]}
+      mockup="morning"
+    />
+
+    <PrivacyCallout />
     <Features />
     <Pricing />
-    <PrivacyCallout />
+    <Testimonials />
     <WaitlistCTA />
   </main>
   <Footer />

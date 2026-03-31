@@ -1,0 +1,116 @@
+---
+interface Props {
+  label: string;
+  title: string;
+  description: string;
+  items: string[];
+  reverse?: boolean;
+  mockup: 'recording' | 'summary' | 'morning';
+}
+
+const { label, title, description, items, reverse = false, mockup } = Astro.props;
+---
+
+<section class="py-20 md:py-32 px-6" data-animate>
+  <div class={`max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center ${reverse ? 'md:direction-rtl' : ''}`}>
+    <!-- Text -->
+    <div class={reverse ? 'md:order-2' : ''}>
+      <p class="text-[11px] font-medium uppercase tracking-[0.15em] text-primary mb-4">{label}</p>
+      <h2 class="font-display text-[32px] md:text-[44px] leading-[1.08] text-foreground mb-5">{title}</h2>
+      <p class="text-[15px] leading-relaxed text-muted-foreground mb-6">{description}</p>
+      <ul class="space-y-3">
+        {items.map(item => (
+          <li class="flex items-start gap-2.5 text-[13.5px] text-muted-foreground leading-relaxed">
+            <svg class="w-4 h-4 text-green mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Mockup -->
+    <div class={reverse ? 'md:order-1' : ''}>
+      <div class="mac-window" style="box-shadow: 0 16px 48px rgba(0,0,0,0.3);">
+        <div class="mac-titlebar">
+          <div class="mac-dot" style="background: #ff5f57;"></div>
+          <div class="mac-dot" style="background: #febc2e;"></div>
+          <div class="mac-dot" style="background: #28c840;"></div>
+        </div>
+        <div class="p-5 bg-background min-h-[240px]">
+          {mockup === 'recording' && (
+            <div class="space-y-3">
+              <div class="flex items-center gap-2 mb-4">
+                <div class="w-2.5 h-2.5 rounded-full bg-red-500" style="animation: pulse-glow 1.5s ease-in-out infinite;"></div>
+                <span class="text-[12px] font-medium text-foreground">Recording — Weekly sync</span>
+                <span class="text-[10px] font-mono text-muted-foreground ml-auto">12:34</span>
+              </div>
+              <div class="border-l-2 border-primary pl-3 py-1">
+                <p class="text-[10px] text-primary font-medium">You</p>
+                <p class="text-[12px] text-foreground">Let's go through the Q2 priorities and make sure we're aligned on the timeline.</p>
+              </div>
+              <div class="border-l-2 border-muted-foreground pl-3 py-1">
+                <p class="text-[10px] text-muted-foreground font-medium">Sarah</p>
+                <p class="text-[12px] text-foreground">Sure. I think the biggest risk is the API migration — we should talk about the deadline.</p>
+              </div>
+              <div class="border-l-2 border-primary pl-3 py-1">
+                <p class="text-[10px] text-primary font-medium">You</p>
+                <p class="text-[12px] text-foreground">Agreed. Let's commit to having the spec done by Friday.</p>
+              </div>
+            </div>
+          )}
+          {mockup === 'summary' && (
+            <div class="space-y-3">
+              <p class="font-display text-[18px] text-foreground">Weekly sync with Sarah</p>
+              <p class="text-[10px] text-muted-foreground">Mar 28, 2026 &middot; 32 min &middot; 2 participants</p>
+              <div class="mt-3 space-y-2">
+                <p class="text-[10px] uppercase tracking-widest text-muted-foreground">Decisions</p>
+                <p class="text-[12px] text-foreground pl-3 border-l-2 border-green">API migration spec due Friday. Sarah owns the draft.</p>
+              </div>
+              <div class="space-y-2">
+                <p class="text-[10px] uppercase tracking-widest text-muted-foreground">Action Items</p>
+                <div class="flex items-start gap-2 pl-3 border-l-2 border-amber">
+                  <p class="text-[12px] text-foreground">You: Review pricing doc before Thursday standup</p>
+                </div>
+                <div class="flex items-start gap-2 pl-3 border-l-2 border-amber">
+                  <p class="text-[12px] text-foreground">Sarah: Share migration spec draft by Friday EOD</p>
+                </div>
+              </div>
+            </div>
+          )}
+          {mockup === 'morning' && (
+            <div class="space-y-3">
+              <div class="flex items-center gap-2 mb-2">
+                <img src="/images/app-icon.png" alt="" width="20" height="20" class="rounded-sm" />
+                <p class="text-[12px] font-medium text-foreground">Morning Brief — Monday, Mar 31</p>
+              </div>
+              <div class="border border-border rounded-md p-3 bg-card">
+                <p class="text-[10px] uppercase tracking-widest text-amber mb-1.5">2 at risk</p>
+                <div class="space-y-1.5">
+                  <p class="text-[11px] text-foreground">Review pricing doc — due today</p>
+                  <p class="text-[11px] text-foreground">Send revised proposal to Acme — 2 days overdue</p>
+                </div>
+              </div>
+              <div class="border border-border rounded-md p-3 bg-card">
+                <p class="text-[10px] uppercase tracking-widest text-muted-foreground mb-1.5">3 meetings today</p>
+                <div class="space-y-1.5">
+                  <div class="flex justify-between">
+                    <p class="text-[11px] text-foreground">Design review</p>
+                    <span class="text-[10px] font-mono text-muted-foreground">9:00</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <p class="text-[11px] text-foreground">1:1 with Mike</p>
+                    <span class="text-[10px] font-mono text-muted-foreground">11:00</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <p class="text-[11px] text-foreground">Sprint planning</p>
+                    <span class="text-[10px] font-mono text-muted-foreground">2:00</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

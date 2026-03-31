@@ -18,11 +18,9 @@ const { title, description = 'On-device AI chief of staff for macOS. Private mee
 
     <title>{title}</title>
 
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="/images/favicon.png" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
-    <!-- OG -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content="https://oschief.ai/images/og-image.png" />
@@ -30,35 +28,31 @@ const { title, description = 'On-device AI chief of staff for macOS. Private mee
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <!-- Instrument Serif (display font) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&display=swap" rel="stylesheet" />
-
-    <!-- Geist font preload -->
     <link rel="preload" href="/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin />
 
-    <!-- Dark mode init (before paint) -->
+    <!-- Dark-first: default is dark, toggle adds .light -->
     <script is:inline>
       const t = localStorage.getItem('theme');
-      if (t === 'dark' || (!t && matchMedia('(prefers-color-scheme: dark)').matches))
-        document.documentElement.classList.add('dark');
+      if (t === 'light') document.documentElement.classList.add('light');
     </script>
   </head>
-  <body class="min-h-screen">
+  <body class="min-h-screen overflow-x-hidden">
     <slot />
     <Analytics />
 
-    <!-- Scroll-triggered fade-in -->
     <script is:inline>
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(e => {
           if (e.isIntersecting) {
             e.target.classList.add('animate-fade-in');
+            e.target.style.opacity = '1';
             observer.unobserve(e.target);
           }
         });
-      }, { threshold: 0.1 });
+      }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
       document.querySelectorAll('[data-animate]').forEach(el => {
         el.style.opacity = '0';
         observer.observe(el);
