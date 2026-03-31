@@ -2,8 +2,8 @@ import type { APIRoute } from 'astro';
 import { Redis } from '@upstash/redis';
 
 function getRedis() {
-  const url = import.meta.env.UPSTASH_REDIS_REST_URL || process.env.UPSTASH_REDIS_REST_URL;
-  const token = import.meta.env.UPSTASH_REDIS_REST_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
+  const url = import.meta.env.KV_REST_API_URL || process.env.KV_REST_API_URL || import.meta.env.UPSTASH_REDIS_REST_URL || process.env.UPSTASH_REDIS_REST_URL;
+  const token = import.meta.env.KV_REST_API_TOKEN || process.env.KV_REST_API_TOKEN || import.meta.env.UPSTASH_REDIS_REST_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
   if (!url || !token) return null;
   return new Redis({ url, token });
 }
