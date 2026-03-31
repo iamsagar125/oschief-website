@@ -82,14 +82,24 @@
   .gradient-hero {
     background: radial-gradient(ellipse 80% 50% at 50% -20%, hsl(229 30% 18%) 0%, hsl(225 18% 8%) 100%);
   }
+  .light .gradient-hero {
+    background: radial-gradient(ellipse 80% 50% at 50% -20%, hsl(229 30% 92%) 0%, hsl(228 14% 96%) 100%);
+  }
   .gradient-section {
     background: radial-gradient(ellipse 60% 40% at 50% 100%, hsl(229 25% 14%) 0%, transparent 100%);
+  }
+  .light .gradient-section {
+    background: radial-gradient(ellipse 60% 40% at 50% 100%, hsl(229 20% 92%) 0%, transparent 100%);
   }
   .mac-window {
     background: hsl(225 16% 12%);
     border: 1px solid hsl(225 12% 22%);
     border-radius: 12px;
     overflow: hidden;
+  }
+  .light .mac-window {
+    background: hsl(228 12% 99%);
+    border: 1px solid hsl(228 11% 89%);
   }
   .mac-titlebar {
     height: 36px;
@@ -99,6 +109,10 @@
     align-items: center;
     padding-left: 12px;
     gap: 6px;
+  }
+  .light .mac-titlebar {
+    background: hsl(228 12% 96%);
+    border-bottom: 1px solid hsl(228 11% 89%);
   }
   .mac-dot {
     width: 10px;
