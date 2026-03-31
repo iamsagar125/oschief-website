@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { Analytics } from '@vercel/analytics/astro';
 
 interface Props {
   title: string;
@@ -46,6 +47,7 @@ const { title, description = 'On-device AI chief of staff for macOS. Private mee
   </head>
   <body class="min-h-screen">
     <slot />
+    <Analytics />
 
     <!-- Scroll-triggered fade-in -->
     <script is:inline>
