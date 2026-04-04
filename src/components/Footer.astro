@@ -5,7 +5,9 @@ const year = new Date().getFullYear();
 <footer class="border-t border-border py-8 px-6">
   <div class="max-w-[1100px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
     <div class="flex items-center gap-2">
-      <img src="/images/app-icon.png" alt="OSChief" width="20" height="20" class="rounded-sm" />
+      <div class="w-5 h-5 bg-foreground/10 rounded-[22.5%] flex items-center justify-center">
+        <svg width="10" height="10" viewBox="0 0 100 100" fill="none" aria-hidden="true"><circle cx="50" cy="50" r="12" fill="currentColor" class="text-foreground"/><circle cx="50" cy="20" r="4" fill="currentColor" class="text-foreground"/><circle cx="80" cy="50" r="4" fill="currentColor" class="text-foreground"/><circle cx="50" cy="80" r="4" fill="currentColor" class="text-foreground"/><circle cx="20" cy="50" r="4" fill="currentColor" class="text-foreground"/></svg>
+      </div>
       <span class="text-[13px] text-muted-foreground">&copy; {year} OSChief</span>
     </div>
 

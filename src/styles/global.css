@@ -131,6 +131,24 @@
   50% { opacity: 1; }
 }
 
+@keyframes breathe {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1.0; transform: scale(1.05); }
+}
+
+.animate-breathe {
+  animation: breathe 8s ease-in-out infinite;
+}
+
+.ambient-glow {
+  background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 40%, transparent 70%);
+  filter: blur(60px);
+}
+
+.light .ambient-glow {
+  background: radial-gradient(circle, rgba(46,63,143,0.08) 0%, rgba(46,63,143,0.02) 40%, transparent 70%);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

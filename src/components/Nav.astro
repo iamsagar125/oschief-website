@@ -8,9 +8,17 @@ const links = [
 
 <nav id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
   <div class="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
-    <a href="/" class="flex items-center gap-2.5">
-      <img src="/images/app-icon.png" alt="OSChief" width="28" height="28" class="rounded-md" />
-      <span class="font-sans font-semibold text-[15px] text-foreground">OSChief</span>
+    <a href="/" class="flex items-center gap-2">
+      <div class="w-7 h-7 bg-foreground/10 rounded-[22.5%] flex items-center justify-center">
+        <svg width="16" height="16" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+          <circle cx="50" cy="50" r="12" fill="currentColor" class="text-foreground" />
+          <circle cx="50" cy="20" r="4" fill="currentColor" class="text-foreground" />
+          <circle cx="80" cy="50" r="4" fill="currentColor" class="text-foreground" />
+          <circle cx="50" cy="80" r="4" fill="currentColor" class="text-foreground" />
+          <circle cx="20" cy="50" r="4" fill="currentColor" class="text-foreground" />
+        </svg>
+      </div>
+      <span class="font-sans font-black text-[15px] text-foreground tracking-tight">OSChief</span>
     </a>
 
     <div class="hidden md:flex items-center gap-8">

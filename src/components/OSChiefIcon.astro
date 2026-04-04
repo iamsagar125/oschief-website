@@ -1,0 +1,25 @@
+---
+interface Props {
+  size?: number;
+  color?: string;
+  class?: string;
+}
+
+const { size = 64, color = 'currentColor', class: className = '' } = Astro.props;
+---
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 100 100"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  class={className}
+  aria-label="OSChief icon"
+>
+  <circle cx="50" cy="50" r="12" fill={color} />
+  <circle cx="50" cy="20" r="4" fill={color} />
+  <circle cx="80" cy="50" r="4" fill={color} />
+  <circle cx="50" cy="80" r="4" fill={color} />
+  <circle cx="20" cy="50" r="4" fill={color} />
+</svg>

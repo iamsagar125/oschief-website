@@ -82,7 +82,9 @@ const mockupAnim = reverse ? 'slide-right' : 'slide-left';
           {mockup === 'morning' && (
             <div class="space-y-3">
               <div class="flex items-center gap-2 mb-2">
-                <img src="/images/app-icon.png" alt="" width="20" height="20" class="rounded-sm" />
+                <div class="w-5 h-5 bg-foreground/10 rounded-[22.5%] flex items-center justify-center shrink-0">
+                  <svg width="10" height="10" viewBox="0 0 100 100" fill="none" aria-hidden="true"><circle cx="50" cy="50" r="12" fill="currentColor" class="text-foreground"/><circle cx="50" cy="20" r="4" fill="currentColor" class="text-foreground"/><circle cx="80" cy="50" r="4" fill="currentColor" class="text-foreground"/><circle cx="50" cy="80" r="4" fill="currentColor" class="text-foreground"/><circle cx="20" cy="50" r="4" fill="currentColor" class="text-foreground"/></svg>
+                </div>
                 <p class="text-[12px] font-medium text-foreground">Morning Brief — Monday, Mar 31</p>
               </div>
               <div class="border border-border rounded-md p-3 bg-card">

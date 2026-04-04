@@ -1,5 +1,10 @@
-<section class="gradient-hero min-h-screen flex flex-col items-center justify-center px-6 relative">
-  <div class="text-center max-w-[720px] mx-auto">
+<section class="gradient-hero min-h-screen flex flex-col items-center justify-center px-6 relative overflow-hidden">
+  <!-- Ambient glow -->
+  <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+    <div class="w-[400px] h-[400px] md:w-[500px] md:h-[500px] ambient-glow animate-breathe absolute"></div>
+  </div>
+
+  <div class="text-center max-w-[720px] mx-auto relative z-10">
     <div class="animate-hero-text" style="animation-delay: 0ms;">
       <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-border bg-card/50 text-[12px] font-medium text-muted-foreground mb-8">
         <span class="w-1.5 h-1.5 rounded-full bg-amber" style="animation: pulse-glow 2s ease-in-out infinite;" aria-hidden="true"></span>
