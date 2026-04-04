@@ -1,36 +1,36 @@
 ---
 const features = [
   {
+    title: 'Commitment Tracking',
+    items: ['Every promise extracted with owner + deadline', 'Risk scoring: green, amber, red', 'Morning brief: what you owe, what\'s owed to you', 'Nudges before things slip'],
+  },
+  {
     title: 'Meeting Intelligence',
-    items: ['Live speaker-labeled transcription', 'Structured AI summaries', 'Role-based coaching for 10+ roles', 'Talk-time metrics & filler detection'],
+    items: ['Live speaker-labeled transcription', 'Decisions, not just summaries', 'Role-based coaching for 10+ roles', 'Talk-time metrics & filler detection'],
   },
   {
-    title: 'Proactive Intelligence',
-    items: ['Daily morning brief', 'Commitment risk scoring', 'Stale decision alerts', 'Weekly intelligence digest'],
-  },
-  {
-    title: 'People & Projects',
-    items: ['Auto-built relationship graph', 'Per-person commitment tracking', 'Project grouping & timelines', 'Full decision lifecycle'],
+    title: 'People & Relationships',
+    items: ['Auto-built graph from every conversation', 'Per-person: what you decided, what you owe each other', 'Project grouping with decision timelines', 'Full commitment lifecycle tracking'],
   },
   {
     title: 'Integrations',
-    items: ['Google Calendar + Microsoft 365', 'Obsidian vault export', 'Jira, Slack, Teams', 'Gmail for meeting prep'],
+    items: ['Google Calendar + Microsoft 365', 'Obsidian vault export with wikilinks', 'Jira ticket creation from commitments', 'Slack, Teams, Gmail'],
   },
 ];
 ---
 
-<section id="features" class="py-20 md:py-28 px-6" data-animate="fade-up">
+<section id="features" class="py-20 md:py-28 px-4 md:px-6" data-animate="fade-up">
   <div class="max-w-[1100px] mx-auto">
     <p class="text-[11px] font-medium uppercase tracking-[0.15em] text-primary mb-4 text-center">Everything you get</p>
-    <h2 class="font-display text-[32px] md:text-[44px] leading-[1.08] text-foreground mb-14 text-center">
-      Not another meeting recorder
+    <h2 class="font-display text-[28px] md:text-[44px] leading-[1.08] text-foreground mb-12 md:mb-14 text-center">
+      More than meeting notes
     </h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
       {features.map((f) => (
-        <div class="border border-border rounded-md p-6 bg-card/50 hover:bg-card transition-colors" data-stagger="fade-up">
-          <h3 class="font-sans font-semibold text-[15px] text-foreground mb-4">{f.title}</h3>
-          <ul class="space-y-2.5">
+        <div class="border border-border rounded-md p-5 md:p-6 bg-card/50 hover:bg-card transition-colors" data-stagger="fade-up">
+          <h3 class="font-sans font-semibold text-[15px] text-foreground mb-3 md:mb-4">{f.title}</h3>
+          <ul class="space-y-2 md:space-y-2.5">
             {f.items.map((item) => (
               <li class="flex items-start gap-2.5 text-[13px] text-muted-foreground">
                 <svg class="w-3.5 h-3.5 text-green mt-0.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
